@@ -75,7 +75,7 @@
             </div>
         </nav>
 
-        <example-component></example-component>
+        <post-component></post-component>
 
 
         <main class="py-4">
