@@ -75,10 +75,14 @@
             </div>
         </nav>
 
-        <post-component></post-component>
+
+
 
 
         <main class="py-4">
+
+            <post-component></post-component>
+
             @yield('content')
         </main>
     </div>
