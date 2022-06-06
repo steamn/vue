@@ -1,6 +1,8 @@
 <template>
 
     <div class="container">
+
+        <CreateComponent></CreateComponent>
         <SinglePostComponent>
         </SinglePostComponent>
 
@@ -14,6 +16,7 @@
 
 import SinglePostComponent from "./SinglePostComponent";
 
+import CreateComponent from "./CreateComponent";
 export default {
     name: "PostComponent",
 
@@ -23,9 +26,11 @@ export default {
     },
 
     computed: {
+
     },
+
     mounted() {
-        this.getPosts();
+        // this.getPosts();
     },
 
     methods: {
@@ -38,7 +43,9 @@ export default {
     },
 
     components: {
-        SinglePostComponent
+        SinglePostComponent,
+        CreateComponent
+
     },
 }
 </script>
