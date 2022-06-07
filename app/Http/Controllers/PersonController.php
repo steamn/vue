@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
@@ -12,7 +11,7 @@ class PersonController extends Controller
            [
                'id' => 1,
                'name' => 'Ivan',
-               'age' => 20,
+               'age' => 23,
                'job' => 'developer',
            ],
            [

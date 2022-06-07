@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +23,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::get('/persons', [PersonController::class, '__invoke']);

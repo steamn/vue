@@ -12,7 +12,7 @@
                 <input type="text"  v-model="job" class="form-control" id="job" placeholder="job">
             </div>
             <div class="mb-3">
-                <input @click.prevent="addPerson" class="btn btn-primary"  value="Добавить">
+                <input @click.prevent="addPerson" type="submit" class="btn btn-primary"  value="Добавить">
             </div>
         </div>
     </div>
@@ -32,13 +32,15 @@ export default {
 
     methods: {
         addPerson() {
+
             axios.post('/api/people', {name: this.name, age: this.age, job: this.job})
                 .then(res => {
+                    this.name = null
+                    this.age = null
+                    this.job = null
 
                     console.log(res);
                 })
-
-            console.log(this.name, this.age, this.job)
         }
 
     }

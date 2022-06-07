@@ -15,4 +15,4 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-https://youtu.be/s9w0BBHjhQ8?list=PLd2_Os8Cj3t8XxpP2j3-Jy90jSJftNsOC&t=492
+https://youtu.be/k5Ab0mo3f7o?list=PLd2_Os8Cj3t8XxpP2j3-Jy90jSJftNsOC
