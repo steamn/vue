@@ -5470,7 +5470,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       people: null,
-      editPersonId: null
+      editPersonId: null,
+      name: null,
+      age: null,
+      job: null
     };
   },
   mounted: function mounted() {
@@ -5484,8 +5487,22 @@ __webpack_require__.r(__webpack_exports__);
         _this.people = res.data;
       });
     },
-    changePersonId: function changePersonId(id) {
+    updatePerson: function updatePerson(id) {
+      this.editPersonId = null;
+      console.log(this.name, this.age, this.job);
+      axios.patch("/api/people/".concat(id), {
+        name: this.name,
+        age: this.age,
+        job: this.job
+      }).then(function (res) {
+        console.log(res);
+      });
+    },
+    changePersonId: function changePersonId(id, name, age, job) {
       this.editPersonId = id;
+      this.name = name;
+      this.age = age;
+      this.job = job;
     },
     isEdit: function isEdit(id) {
       return this.editPersonId === id;
@@ -28445,7 +28462,12 @@ var render = function () {
                       on: {
                         click: function ($event) {
                           $event.preventDefault()
-                          return _vm.changePersonId(person.id)
+                          return _vm.changePersonId(
+                            person.id,
+                            person.name,
+                            person.age,
+                            person.job
+                          )
                         },
                       },
                     },
@@ -28459,11 +28481,77 @@ var render = function () {
                   _vm._v(_vm._s(person.id)),
                 ]),
                 _vm._v(" "),
-                _vm._m(1, true),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.name,
+                        expression: "name",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.name },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.name = $event.target.value
+                      },
+                    },
+                  }),
+                ]),
                 _vm._v(" "),
-                _vm._m(2, true),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.age,
+                        expression: "age",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.age },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.age = $event.target.value
+                      },
+                    },
+                  }),
+                ]),
                 _vm._v(" "),
-                _vm._m(3, true),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.job,
+                        expression: "job",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.job },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.job = $event.target.value
+                      },
+                    },
+                  }),
+                ]),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -28474,7 +28562,7 @@ var render = function () {
                       on: {
                         click: function ($event) {
                           $event.preventDefault()
-                          return _vm.changePersonId(null)
+                          return _vm.updatePerson(person.id)
                         },
                       },
                     },
@@ -28507,30 +28595,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Изменить")]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("input", { staticClass: "form-control", attrs: { type: "text" } }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("input", { staticClass: "form-control", attrs: { type: "number" } }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("input", { staticClass: "form-control", attrs: { type: "text" } }),
     ])
   },
 ]

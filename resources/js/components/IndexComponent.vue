@@ -18,14 +18,14 @@
                     <td>{{ person.name }}</td>
                     <td>{{ person.age }}</td>
                     <td>{{ person.job }}</td>
-                    <td><a @click.prevent="changePersonId(person.id)" class="btn btn-success" href="#">Изменить</a></td>
+                    <td><a @click.prevent="changePersonId(person.id, person.name, person.age, person.job )" class="btn btn-success" href="#">Изменить</a></td>
                 </tr>
                 <tr :class="isEdit(person.id) ? '' : 'd-none' ">
                     <th scope="row">{{ person.id }}</th>
-                    <td><input type="text" class="form-control"></td>
-                    <td><input type="number" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
-                    <td><a @click.prevent="changePersonId(null)" class="btn btn-success" href="#">Сохранить</a></td>
+                    <td><input v-model="name" type="text" class="form-control"></td>
+                    <td><input v-model="age" type="number" class="form-control"></td>
+                    <td><input v-model="job" type="text" class="form-control"></td>
+                    <td><a @click.prevent="updatePerson(person.id)" class="btn btn-success" href="#">Сохранить</a></td>
                 </tr>
             </template>
 
@@ -42,7 +42,10 @@ export default {
     data() {
       return {
           people: null,
-          editPersonId: null
+          editPersonId: null,
+          name: null,
+          age: null,
+          job: null
 
       }
     },
@@ -57,8 +60,20 @@ export default {
                     this.people = res.data;
                 })
         },
-        changePersonId(id) {
+        updatePerson(id) {
+            this.editPersonId = null
+            console.log(this.name, this.age,this.job)
+
+            axios.patch(`/api/people/${id}`, {name: this.name, age: this.age, job: this.job})
+                .then(res => {
+                    console.log(res);
+                })
+        },
+        changePersonId(id, name, age, job) {
             this.editPersonId = id
+            this.name = name
+            this.age = age
+            this.job = job
         },
         isEdit(id) {
             return this.editPersonId === id;
