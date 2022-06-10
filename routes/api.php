@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Person\DeleteController;
 use App\Http\Controllers\Person\IndexController;
 use App\Http\Controllers\Person\StoreController;
 use App\Http\Controllers\Person\UpdateController;
@@ -24,5 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Person', 'prefix' => 'people'], function () {
     Route::post('/', [StoreController::class, '__invoke']);
     Route::get('/', [IndexController::class, '__invoke']);
-    Route::get('/{person}', [UpdateController::class, '__invoke']);
+    Route::patch('/{person}', [UpdateController::class, '__invoke']);
+    Route::delete('/{person}', [DeleteController::class, '__invoke']);
 });

@@ -3,7 +3,7 @@
     <div class="container">
 
         <CreateComponent></CreateComponent>
-        <IndexComponent></IndexComponent>
+        <IndexComponent ref="index"></IndexComponent>
 <!--        <table class="table">-->
 <!--            <thead>-->
 <!--            <tr>-->
@@ -57,6 +57,9 @@ export default {
                .finally(  {
 
                })
+        },
+        parentLog(){
+            console.log('Это родительский компонент');
         }
     },
 

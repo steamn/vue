@@ -9,16 +9,18 @@
                 <th scope="col">Возраст</th>
                 <th scope="col">Работа</th>
                 <th scope="col">Изменить</th>
+                <th scope="col">Удалить</th>
             </tr>
             </thead>
             <tbody>
             <template v-for="person in people">
-                <tr>
+                <tr :class="isEdit(person.id) ? 'd-none' : '' ">
                     <th scope="row">{{ person.id }}</th>
                     <td>{{ person.name }}</td>
                     <td>{{ person.age }}</td>
                     <td>{{ person.job }}</td>
                     <td><a @click.prevent="changePersonId(person.id, person.name, person.age, person.job )" class="btn btn-success" href="#">Изменить</a></td>
+                    <td><a @click.prevent="deletePerson(person.id)" class="btn btn-danger" href="#">Удалить</a></td>
                 </tr>
                 <tr :class="isEdit(person.id) ? '' : 'd-none' ">
                     <th scope="row">{{ person.id }}</th>
@@ -51,6 +53,7 @@ export default {
     },
     mounted() {
         this.getPeople();
+
     },
 
     methods: {
@@ -60,13 +63,17 @@ export default {
                     this.people = res.data;
                 })
         },
+        deletePerson(id) {
+            axios.delete(`/api/people/${id}`)
+                .then(res => {
+                    this.getPeople()
+                })
+        },
         updatePerson(id) {
             this.editPersonId = null
-            console.log(this.name, this.age,this.job)
-
             axios.patch(`/api/people/${id}`, {name: this.name, age: this.age, job: this.job})
                 .then(res => {
-                    console.log(res);
+                    this.getPeople()
                 })
         },
         changePersonId(id, name, age, job) {
@@ -77,6 +84,9 @@ export default {
         },
         isEdit(id) {
             return this.editPersonId === id;
+        },
+        indexLog(){
+            console.log('Это компонент индекс лог');
         }
     }
 
