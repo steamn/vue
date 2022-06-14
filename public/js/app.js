@@ -5391,6 +5391,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CreateComponent",
@@ -5401,7 +5402,12 @@ __webpack_require__.r(__webpack_exports__);
     return {
       name: null,
       age: null,
-      job: null
+      job: null,
+      obj: {
+        color: 'blue',
+        number: 32,
+        isPublished: false
+      }
     };
   },
   methods: {
@@ -5416,6 +5422,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.name = null;
         _this.age = null;
         _this.job = null;
+
+        _this.$parent.$refs.index.getPeople();
       });
     }
   }
@@ -5571,6 +5579,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5623,11 +5632,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SomeComponent",
   data: function data() {
     return {};
   },
+  props: ['obj'],
   mounted: function mounted() {
     this.$parent.$parent.parentLog();
   },
@@ -28448,7 +28460,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "c ntainer" },
     [
       _c("div", { staticClass: "w-25" }, [
         _c("div", { staticClass: "mb-3" }, [
@@ -28537,7 +28549,7 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _c("SomeComponent"),
+      _c("SomeComponent", { attrs: { obj: _vm.obj } }),
     ],
     1
   )
@@ -28805,7 +28817,22 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" })
+  return _c("div", { staticClass: "container" }, [
+    _c("div", [_vm._v("Цвет: " + _vm._s(_vm.obj.color))]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v(
+        "Номер: " + _vm._s(_vm.obj.number > 10 ? "больше 10" : "меньше 10")
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v(
+        "Статус: " +
+          _vm._s(_vm.obj.isPublished ? "Опубликовано" : "Не обпуликовано")
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

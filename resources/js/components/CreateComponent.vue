@@ -1,6 +1,6 @@
 <template>
 
-    <div class="container">
+    <div class="c ntainer">
         <div class="w-25">
             <div class="mb-3">
                 <input type="text" v-model="name" class="form-control" id="name" placeholder="name">
@@ -16,7 +16,8 @@
             </div>
         </div>
 
-        <SomeComponent></SomeComponent>
+        <SomeComponent :obj="obj" ></SomeComponent>
+
     </div>
 </template>
 
@@ -37,6 +38,11 @@ export default {
             name: null,
             age: null,
             job: null,
+            obj: {
+                color: 'blue',
+                number: 32,
+                isPublished: false,
+            }
         }
     },
 
@@ -47,6 +53,7 @@ export default {
                     this.name = null
                     this.age = null
                     this.job = null
+                    this.$parent.$refs.index.getPeople()
                 })
         },
 

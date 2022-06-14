@@ -2,6 +2,7 @@
 
     <div class="container">
 
+
         <CreateComponent></CreateComponent>
         <IndexComponent ref="index"></IndexComponent>
 <!--        <table class="table">-->
@@ -29,6 +30,8 @@
 import IndexComponent from "./IndexComponent";
 import CreateComponent from "./CreateComponent";
 export default {
+
+
     name: "PostComponent",
 
     data() {
@@ -36,6 +39,7 @@ export default {
           persons:  null
       }
     },
+
 
     computed: {
 
