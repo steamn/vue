@@ -14,23 +14,9 @@
             </thead>
             <tbody>
             <template v-for="person in people">
-                <tr :class="isEdit(person.id) ? 'd-none' : '' ">
-                    <th scope="row">{{ person.id }}</th>
-                    <td>{{ person.name }}</td>
-                    <td>{{ person.age }}</td>
-                    <td>{{ person.job }}</td>
-                    <td><a @click.prevent="changePersonId(person.id, person.name, person.age, person.job )" class="btn btn-success" href="#">Изменить</a></td>
-                    <td><a @click.prevent="deletePerson(person.id)" class="btn btn-danger" href="#">Удалить</a></td>
-                </tr>
-                <tr :class="isEdit(person.id) ? '' : 'd-none' ">
-                    <th scope="row">{{ person.id }}</th>
-                    <td><input v-model="name" type="text" class="form-control"></td>
-                    <td><input v-model="age" type="number" class="form-control"></td>
-                    <td><input v-model="job" type="text" class="form-control"></td>
-                    <td><a @click.prevent="updatePerson(person.id)" class="btn btn-success" href="#">Сохранить</a></td>
-                </tr>
+                <ShowComponent  :person="person" :ref="`show_${person.id}`"></ShowComponent>
+                <EditComponent :person="person" :ref="`edit_${person.id}`"> </EditComponent>
             </template>
-
 
             </tbody>
         </table>
@@ -38,9 +24,11 @@
 </template>
 
 <script>
+import EditComponent from "./EditComponent";
+import ShowComponent from "./ShowComponent";
 export default {
     name: "IndexComponent",
-
+    components: {ShowComponent, EditComponent},
     data() {
       return {
           people: null,
@@ -55,6 +43,7 @@ export default {
         this.getPeople();
 
     },
+
 
     methods: {
         getPeople() {
@@ -78,9 +67,12 @@ export default {
         },
         changePersonId(id, name, age, job) {
             this.editPersonId = id
-            this.name = name
-            this.age = age
-            this.job = job
+
+            let fullName = this.$refs[`edit_${id}`][0];
+
+            fullName.name = name
+            fullName.age = age
+            fullName.job = job
         },
         isEdit(id) {
             return this.editPersonId === id;
