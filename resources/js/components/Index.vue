@@ -1,0 +1,20 @@
+<template>
+    <div>
+        <router-link to="/posts">Posts</router-link>
+        <br>
+        <router-link to="/tags">Tags</router-link>
+        <br>
+        <router-view></router-view>
+    </div>
+</template>
+
+<script>
+
+export default {
+    name: "Index"
+}
+</script>
+
+<style scoped>
+
+</style>
