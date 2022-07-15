@@ -17,4 +17,4 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
 
 
-https://youtu.be/Nd5D_if9Ilo?list=PLd2_Os8Cj3t8XxpP2j3-Jy90jSJftNsOC&t=240
+https://www.youtube.com/watch?v=B2dCQ-FhsO8&list=PLd2_Os8Cj3t8XxpP2j3-Jy90jSJftNsOC&index=35

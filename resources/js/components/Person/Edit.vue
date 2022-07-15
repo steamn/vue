@@ -12,7 +12,7 @@
                 <input class="form-control" v-model="job" placeholder="job" type="text" name="job">
             </div>
             <div class="mb-3">
-                <input @click.prevent="update" type="submit" class="btn btn-primary" value="Обновить">
+                <input :disabled="!isDisabled" @click.prevent="update" type="submit" class="btn btn-primary" value="Обновить">
             </div>
 
         </div>
@@ -53,8 +53,14 @@ export default {
                         name: 'person.show', params: {id: this.$route.params.id }
                     })
                 })
-        }
+        },
+
     },
+    computed: {
+        isDisabled() {
+            return this.name && this.age && this.job
+        }
+    }
 
 
 
