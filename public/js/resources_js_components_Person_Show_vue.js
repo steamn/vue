@@ -26,7 +26,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Show",
   data: function data() {
@@ -41,8 +40,8 @@ __webpack_require__.r(__webpack_exports__);
     getPerson: function getPerson() {
       var _this = this;
 
-      axios.get('/api/people/' + this.$route.params.id).then(function (res) {
-        _this.person = res.data;
+      axios.get("/api/people/".concat(this.$route.params.id)).then(function (res) {
+        _this.person = res.data.data;
       });
     }
   }
@@ -143,15 +142,11 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", [
-            _vm._v("\n        Age: " + _vm._s(this.person.age) + "jjh\n    "),
+            _vm._v("\n        Age: " + _vm._s(this.person.age) + "\n    "),
           ]),
           _vm._v(" "),
           _c("div", [
-            _vm._v(
-              "\n        Job: " +
-                _vm._s(this.person.job) +
-                "\n        ddd\n    "
-            ),
+            _vm._v("\n        Job: " + _vm._s(this.person.job) + "\n    "),
           ]),
           _vm._v(" "),
           _c(

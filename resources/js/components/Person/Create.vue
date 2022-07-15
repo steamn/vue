@@ -11,7 +11,7 @@
             <input class="form-control" v-model="job" placeholder="job" type="text" name="job">
         </div>
         <div class="mb-3">
-            <input @click.prevent="store" type="submit" class="btn btn-primary" value="Submit">
+            <input :disabled="!isDisabled" @click.prevent="store" type="submit" class="btn btn-primary" value="Submit">
         </div>
 
     </div>
@@ -19,7 +19,6 @@
 
 <script>
 
-import router from "../../router";
 
 
 export default {
@@ -36,8 +35,15 @@ export default {
         store() {
             axios.post('/api/people', {name: this.name, age: this.age, job: this.job})
                 .then( res => {
-                router.push({ name: 'person.index'})
+                this.$router.push({ name: 'person.index'})
             })
+        },
+
+    },
+
+    computed: {
+        isDisabled() {
+             return this.name && this.age && this.job
         }
     }
 }
